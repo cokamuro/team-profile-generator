@@ -5,44 +5,41 @@ const Engineer = require("./lib/classes.js");
 const Intern = require("./lib/classes.js");
 const questions = require('./lib/questions.js');
 
-
 const init = async () => {
+    let enterAnother=false;
     // prompt the user for all of the data to integrate into the template
-    const data = await prompt(questions);
+    do {
+        const data = await prompt(questions.employeeQuestions);
+        console.log(data)
+        switch (data.employeeType) {
+            case "manager": {
+                //const managerData = await prompt(questions.managerQuestions);
+
+            }
+            case "engineer": {
+                
+                //const engineerData = await prompt(questions.engineerQuestions);
+            }
+            case "intern": {
+                //const internData = await prompt(questions.internQuestions);
+
+            }
+        }
+        //const exit = await prompt(questions.enterAnotherEmployeeQuestion);
+        enterAnother=data.enterAnother;
+    } while (enterAnother == true);
+
     // read the template README
-    const template=utils.readTemplate();
-    // perform the wildcard substitutions in the template
-    let body=template.replace("%%%project-title%%%",data.projectTitle)
-    body=body.replace("%%%project-description%%%",data.projectDescription)
-    body=body.replace("%%%installation-instructions%%%",data.installationInstructions)
-    body=body.replace("%%%usage-information%%%",data.usageInformation)
-    if(data.licenseName=="none"){
-        body=body.replace("%%%license-name%%%","There is no usage license for this project.")
-    } else {
-        body=body.replace("%%%license-name%%%","This project is licensed under "+data.licenseName+".  Click the badge below to see the terms of this license.")
-    }
-    body=body.replace("%%%license-badge%%%",mdHelper.lookupLicenseMarkup(data.licenseName))
-    body=body.replace("%%%contribution-instructions%%%",data.contributionGuidelines)
-    body=body.replace("%%%test-instructions%%%",data.testInstructions)
-    body=body.replaceAll("%%%email-address%%%",data.emailAddress)
-    body=body.replace("%%%github-id%%%",data.githubUsername)
+    //const template=utils.readTemplate();
+
     // write the string to the README.md file in the output directory
-    utils.writeToFile("./output/README.md", body);
-  };
+    //utils.writeToFile("./output/README.md", body);
+};
 
 // Function call to initialize app
 init();
 
 
-
-
-//get user input
-
-
-
-fs.writeFileSync('./output/index.html', template);
-console.log('TEMPLATE GENERATED!');
-process.exit();
 
 
 
