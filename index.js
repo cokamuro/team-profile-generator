@@ -14,7 +14,7 @@ function renderDynamicContent(employees) {
         switch (employee.role) {
             case "manager": {
                 output += `
-                <div class="col c3 card manager">
+                <div class="col c4 card manager">
                     <h3>${employee.name}</h3>
                     <hr>
                     <strong>Manager</strong>
@@ -27,7 +27,7 @@ function renderDynamicContent(employees) {
             }
             case "engineer": {
                 output += `
-                <div class="col c3 card engineer">
+                <div class="col c4 card engineer">
                     <h3>${employee.name}</h3>
                     <hr>
                     <strong>Engineer</strong>
@@ -40,7 +40,7 @@ function renderDynamicContent(employees) {
             }
             case "intern": {
                 output += `
-                <div class="col c3 card intern">
+                <div class="col c4 card intern">
                     <h3>${employee.name}</h3>
                     <hr>
                     <strong>Intern</strong>
@@ -66,10 +66,10 @@ const init = async () => {
         const data = await prompt(employeeQuestions);
         switch (data.employeeType) {
             case "manager": {
-                    const thisManager = new Manager(data.employeeName, data.employeeID, data.employeeEmail, data.employeeOfficeNumber)
-                    //once a manager has been entered, remove the "manager" choice from the question's choices
-                    employeeQuestions[0].choices.shift();
-                    employees.push(thisManager);
+                const thisManager = new Manager(data.employeeName, data.employeeID, data.employeeEmail, data.employeeOfficeNumber)
+                //once a manager has been entered, remove the "manager" choice from the question's choices
+                employeeQuestions[0].choices.shift();
+                employees.push(thisManager);
                 break;
             }
             case "engineer": {
