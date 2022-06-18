@@ -5,7 +5,7 @@ const { Engineer } = require("../lib/classes.js");
 const { Intern } = require("../lib/classes.js");
 
 
-describe("Employee", () => {
+describe("Employee Object Tests", () => {
   describe("Initialization", () => {
     it("should return an object containing properties with the constructor values", () => {
       const obj = new Employee("testname",999,"testemail@domain.com");
@@ -59,7 +59,7 @@ describe("Employee", () => {
 
 });
 
-describe("Manager", () => {
+describe("Manager Object Tests", () => {
   describe("Initialization", () => {
     it("should return an object containing properties with the constructor values", () => {
       const obj = new Manager("testname",999,"testemail@domain.com",1234);
@@ -83,7 +83,7 @@ describe("Manager", () => {
   });
 });
 
-describe("Engineer", () => {
+describe("Engineer Object Tests", () => {
   describe("Initialization", () => {
     it("should return an object containing properties with the constructor values", () => {
       const obj = new Engineer("testname",999,"testemail@domain.com","githubid");
@@ -117,7 +117,7 @@ describe("Engineer", () => {
   });
 });
 
-describe("Intern", () => {
+describe("Intern Object Tests", () => {
   describe("Initialization", () => {
     it("should return an object containing properties with the constructor values", () => {
       const obj = new Intern("testname",999,"testemail@domain.com","uncc");
