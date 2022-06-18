@@ -1,9 +1,60 @@
 const { prompt } = require("inquirer");
-const fs = require("fs");
-const Manager = require("./lib/classes.js");
-const Engineer = require("./lib/classes.js");
-const Intern = require("./lib/classes.js");
+const { Manager } = require("./lib/classes.js");
+const { Engineer } = require("./lib/classes.js");
+const { Intern } = require("./lib/classes.js");
 const questions = require('./lib/questions.js');
+const fileIO = require('./lib/fileio.js');
+
+function renderDynamicContent(employees){
+    let output="";
+    for(let i=0;i<employees.length;i++){
+        const employee=employees[i]
+        switch (employee.role) {
+            case "manager": {
+                output+=`
+                <div class="col c3 card manager">
+                    <h3>${employee.name}</h3>
+                    <hr>
+                    <strong>Manager</strong>
+                    <hr>
+                    ID: ${employee.id}<br>
+                    Email: <a href="mailto:${employee.email}">${employee.email}</a><br>
+                    Office Number: ${employee.officeNumber}
+                </div>`
+                break;
+            }
+            case "engineer": {
+                output+=`
+                <div class="col c3 card engineer">
+                    <h3>${employee.name}</h3>
+                    <hr>
+                    <strong>Engineer</strong>
+                    <hr>
+                    ID: ${employee.id}<br>
+                    Email: <a href="mailto:${employee.email}">${employee.email}</a><br>
+                    Github: <a href="https://github.com/${employee.github}" target = "_blank">${employee.github}</a><br>
+                </div>`
+                break;
+            }
+            case "intern": {
+                output+=`
+                <div class="col c3 card intern">
+                    <h3>${employee.name}</h3>
+                    <hr>
+                    <strong>Intern</strong>
+                    <hr>
+                    ID: ${employee.id}<br>
+                    Email: <a href="mailto:${employee.email}">${employee.email}</a><br>
+                    School: ${employee.school}<br>
+                </div>`
+                break;
+            }
+        }
+    }
+    return output;
+}
+
+
 
 const init = async () => {
     let enterAnother=false;
@@ -15,33 +66,34 @@ const init = async () => {
             case "manager": {
                 const thisManager=new Manager(data.employeeName,data.employeeID,data.employeeEmail,data.employeeOfficeNumber)
                 employees.push(thisManager);
+                break;
             }
             case "engineer": {
                 const thisEngineer=new Engineer(data.employeeName,data.employeeID,data.employeeEmail,data.employeeGithub)
                 employees.push(thisEngineer);
+                break;
             }
             case "intern": {
                 const thisIntern=new Intern(data.employeeName,data.employeeID,data.employeeEmail,data.employeeSchool)
                 employees.push(thisIntern);
+                break;
             }
         }
         enterAnother=data.enterAnother;
     } while (enterAnother == true);
 
-    console.log("employees",employees)
-    // read the template README
-    //const template=utils.readTemplate();
+    // read the template HTML
+    const templateHTML=fileIO.readTemplate();
+    
+    // insert the dynamic content into the static HTML
+    const finalHTML=templateHTML.replace("~~~dynamic-content~~~",renderDynamicContent(employees));
 
-    // write the string to the README.md file in the output directory
-    //utils.writeToFile("./output/README.md", body);
+    // write the finished index.html to the output directory
+    fileIO.writeToFile("./output/index.html",finalHTML);    
 };
 
 // Function call to initialize app
 init();
-
-
-
-
 
 
 //Finally, although it’s not a requirement, consider adding validation to ensure that user input is in the proper format.
