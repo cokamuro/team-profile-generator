@@ -7,28 +7,28 @@ const questions = require('./lib/questions.js');
 
 const init = async () => {
     let enterAnother=false;
+    let employees=[];
     // prompt the user for all of the data to integrate into the template
     do {
         const data = await prompt(questions.employeeQuestions);
-        console.log(data)
         switch (data.employeeType) {
             case "manager": {
-                //const managerData = await prompt(questions.managerQuestions);
-
+                const thisManager=new Manager(data.employeeName,data.employeeID,data.employeeEmail,data.employeeOfficeNumber)
+                employees.push(thisManager);
             }
             case "engineer": {
-                
-                //const engineerData = await prompt(questions.engineerQuestions);
+                const thisEngineer=new Engineer(data.employeeName,data.employeeID,data.employeeEmail,data.employeeGithub)
+                employees.push(thisEngineer);
             }
             case "intern": {
-                //const internData = await prompt(questions.internQuestions);
-
+                const thisIntern=new Intern(data.employeeName,data.employeeID,data.employeeEmail,data.employeeSchool)
+                employees.push(thisIntern);
             }
         }
-        //const exit = await prompt(questions.enterAnotherEmployeeQuestion);
         enterAnother=data.enterAnother;
     } while (enterAnother == true);
 
+    console.log("employees",employees)
     // read the template README
     //const template=utils.readTemplate();
 
