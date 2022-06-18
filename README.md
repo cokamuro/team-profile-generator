@@ -1,6 +1,6 @@
 # 10 Object-Oriented Programming Challenge: Team Profile Generator
 
-[Walkthrough Video](https://drive.google.com/file/d/1IwVSgiHzPIRRvHsNshj9WJIqzajouJCm/view)
+[Walkthrough Video](https://drive.google.com/file/d/1WF5whKvw5R-yBgAzQWxmF5-VAYpnLukx/view?usp=sharing)
 
 ## Table of Contents
 - [Description](#description)
@@ -39,4 +39,4 @@ Running the unit tests requires the *Jest* module.
 ### Unit tests in operation
 ![Image of Jest test suite](unit-tests.png)
 
-[Walkthrough Video (in case you didn't see it at the top of this document)](https://drive.google.com/file/d/1IwVSgiHzPIRRvHsNshj9WJIqzajouJCm/view)
+[Walkthrough Video (in case you didn't see it at the top of this document)](https://drive.google.com/file/d/1WF5whKvw5R-yBgAzQWxmF5-VAYpnLukx/view?usp=sharing)
