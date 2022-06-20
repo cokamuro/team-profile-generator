@@ -60,7 +60,7 @@ function renderDynamicContent(employees) {
 const init = async () => {
     let enterAnother = false;
     let employees = [];
-    const employeeQuestions = questions.employeeQuestions
+    let employeeQuestions = questions.managerQuestions
     // prompt the user for all of the data to integrate into the template
     do {
         const data = await prompt(employeeQuestions);
@@ -68,7 +68,7 @@ const init = async () => {
             case "manager": {
                 const thisManager = new Manager(data.employeeName, data.employeeID, data.employeeEmail, data.employeeOfficeNumber)
                 //once a manager has been entered, remove the "manager" choice from the question's choices
-                employeeQuestions[0].choices.shift();
+                employeeQuestions = questions.employeeQuestions
                 employees.push(thisManager);
                 break;
             }
